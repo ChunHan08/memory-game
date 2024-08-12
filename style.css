@@ -98,5 +98,14 @@ body{
   }
 }
 @media screen and (max-width: 530px) {
-  
+  .cards{
+    height: 300px;
+    width: 300px;
+  }
+  .card .front-view img{
+    max-width: 15px;
+  }
+  .card .back-view img{
+    max-width: 35px;
+  }
 }
