@@ -2,16 +2,16 @@ const cards = document.querySelectorAll(".card");
 
 let matched = 0;
 let cardOne, cardTwo;
-let disableClick = false;
+let disableDeck = false;
 
 function flipCard({target: clickedCard}) {
-  if(cardOne !== clickedCard && !disableClick) {
+   if(cardOne !== clickedCard && !disableDeck) {
     clickedCard.classList.add("flip");
     if(!cardOne) {
       return cardOne = clickedCard;
     }
     cardTwo = clickedCard;
-    disableClick = true;
+    disableDeck = true;
     let cardOneImg = cardOne.querySelector(".back-view img").src,
     cardTwoImg = cardTwo.querySelector(".back-view img").src;
     matchCards(cardOneImg, cardTwoImg);
@@ -23,7 +23,7 @@ function matchCards(img1, img2) {
     matched++;
     if(matched === 8) {
       setTimeout(() => { 
-        return shuffleCards();
+        return shuffleCard();
       }, 1000);
     }
     cardOne.removeEventListener("click", flipCard);
@@ -40,11 +40,11 @@ function matchCards(img1, img2) {
     cardOne.classList.remove("shake", "flip");
     cardTwo.classList.remove("shake", "flip");
     cardOne = cardTwo = "";
-    disableClick = false;
+    disableDeck = false;
   }, 1200);
 }
 
-function shuffleCards() {
+function shuffleCard() {
   matched = 0;
   disableDeck = false;
   cardOne = cardTwo = "";
@@ -58,7 +58,7 @@ function shuffleCards() {
   });
 }
 
-shuffleCards();
+shuffleCard();
 
 cards.forEach(card => {
   card.addEventListener("click", flipCard);
